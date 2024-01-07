@@ -10,6 +10,7 @@
     Width="660"
     Height="490"
     MinWidth="660"
+    ui:TitleBar.IsIconVisible="True"
     ui:WindowHelper.UseModernWindowStyle="True"
     Closing="Window_Closing"
     Loaded="Window_Loaded"
