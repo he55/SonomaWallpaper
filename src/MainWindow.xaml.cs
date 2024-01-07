@@ -21,18 +21,29 @@ namespace SonomaWallpaper
         Settings _settings = Settings.Load();
         WallpaperAsset _lastSelectedAsset;
         List<WallpaperAsset> _assets;
-        DispatcherTimer _dispatcherTimer = new DispatcherTimer();
+        DispatcherTimer _dispatcherTimer;
         UwpVideoWindow _uwpVideoWindow;
 
         public MainWindow()
         {
             InitializeComponent();
-            InitNotifyIcon();
-            toggleSwitch1.IsOn = _settings.AutoPlay;
+
             toggleSwitch2.IsOn = Helper.CheckStartOnBoot();
-            _dispatcherTimer.Interval = TimeSpan.FromSeconds(5);
-            _dispatcherTimer.Tick += DispatcherTimer_Tick;
-            _dispatcherTimer.IsEnabled = _settings.AutoPlay;
+
+            if (Helper.IsWindows11OrGreater())
+            {
+                _dispatcherTimer = new DispatcherTimer();
+                _dispatcherTimer.Interval = TimeSpan.FromSeconds(5);
+                _dispatcherTimer.Tick += DispatcherTimer_Tick;
+
+                toggleSwitch1.IsOn = _settings.AutoPlay;
+
+                InitNotifyIcon();
+            }
+            else
+            {
+                toggleSwitch1.IsEnabled = false;
+            }
         }
 
         async void PreviewVideo()
@@ -66,6 +77,12 @@ namespace SonomaWallpaper
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            if (!Helper.IsWindows11OrGreater())
+            {
+                Settings.Save();
+                return;
+            }
+
             e.Cancel = true;
             this.Hide();
 
@@ -289,6 +306,11 @@ namespace SonomaWallpaper
 
         private void Preview(object sender, RoutedEventArgs e)
         {
+            if (!Helper.IsWindows11OrGreater())
+            {
+                MessageBox.Show(I18nWpf.GetString("LNotSupportPlayTip"), Constants.ProjectName);
+                return;
+            }
             PreviewVideo();
         }
     }

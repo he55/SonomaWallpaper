@@ -14,4 +14,5 @@
     <sys:String x:Key="LMenuExit">退出</sys:String>
     <sys:String x:Key="LHideTip">SonomaWallpaper 已被最小化到系统托盘</sys:String>
     <sys:String x:Key="LRestartConfirmTip">切换语言需要重新打开应用</sys:String>
+    <sys:String x:Key="LNotSupportPlayTip">4K 视频播放只支持 Windows 11 或更高版本系统</sys:String>
 </ResourceDictionary>

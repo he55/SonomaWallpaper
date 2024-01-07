@@ -11,6 +11,16 @@ namespace SonomaWallpaper
         const string STARTUP_KEY = @"Software\Microsoft\Windows\CurrentVersion\Run";
         static string s_appPath;
 
+        public static bool IsWindows11OrGreater()
+        {
+            var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            var currentBuildStr = (string)reg.GetValue("CurrentBuild");
+            var currentBuild = int.Parse(currentBuildStr);
+
+            return currentBuild >= 22000;
+        }
+
         public static void OpenLink(string link)
         {
             Process.Start(new ProcessStartInfo
