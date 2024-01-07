@@ -17,9 +17,15 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
-        <local:DownloadStateToVisibilityConverter x:Key="noneConverter" State="none" />
-        <local:DownloadStateToVisibilityConverter x:Key="downloadingConverter" State="downloading" />
-        <local:DownloadStateToVisibilityConverter x:Key="downloadedConverter" State="downloaded" />
+        <local:DownloadStateToVisibilityConverter
+            x:Key="noneConverter"
+            State="none" />
+        <local:DownloadStateToVisibilityConverter
+            x:Key="downloadingConverter"
+            State="downloading" />
+        <local:DownloadStateToVisibilityConverter
+            x:Key="downloadedConverter"
+            State="downloaded" />
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
             <Setter Property="BorderThickness" Value="1" />
@@ -57,8 +63,12 @@
                     <ImageBrush ImageSource="{Binding previewImage}" />
                 </Border.Background>
             </Border>
-            <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                <Border Padding="5" Style="{StaticResource BorderStyle}">
+            <StackPanel
+                Grid.Column="1"
+                Margin="10,0,0,0">
+                <Border
+                    Padding="5"
+                    Style="{StaticResource BorderStyle}">
                     <TextBlock Text="{Binding name}" />
                 </Border>
                 <Border Style="{StaticResource BorderStyle}">
@@ -101,8 +111,12 @@
                         Content="{DynamicResource LCancelDownload}"
                         Visibility="{Binding downloadState, Converter={StaticResource downloadingConverter}}" />
 
-                    <StackPanel Orientation="Horizontal" Visibility="{Binding downloadState, Converter={StaticResource downloadedConverter}}">
-                        <Button Click="OpenFolder" Content="{DynamicResource LOpenFolder}" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Visibility="{Binding downloadState, Converter={StaticResource downloadedConverter}}">
+                        <Button
+                            Click="OpenFolder"
+                            Content="{DynamicResource LOpenFolder}" />
                         <Button
                             Margin="10,0,0,0"
                             Click="Preview"
@@ -121,7 +135,9 @@
             Margin="0,10,0,10"
             Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
             DockPanel.Dock="Top" />
-        <ui:GridView x:Name="gridView" SelectionChanged="gridView_SelectionChanged">
+        <ui:GridView
+            x:Name="gridView"
+            SelectionChanged="gridView_SelectionChanged">
             <ui:GridView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
@@ -147,7 +163,9 @@
                             TextAlignment="Center"
                             TextWrapping="Wrap">
                             <Run Text="{Binding name}" />
-                            <Run x:Name="run" Text="↓" />
+                            <Run
+                                x:Name="run"
+                                Text="↓" />
                         </TextBlock>
                     </StackPanel>
                     <DataTemplate.Triggers>

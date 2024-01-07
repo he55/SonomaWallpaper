@@ -10,5 +10,7 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <xamlhost:WindowsXamlHost ChildChanged="WindowsXamlHost_ChildChanged" InitialTypeName="Windows.UI.Xaml.Controls.MediaPlayerElement" />
+    <xamlhost:WindowsXamlHost
+        ChildChanged="WindowsXamlHost_ChildChanged"
+        InitialTypeName="Windows.UI.Xaml.Controls.MediaPlayerElement" />
 </Window>
