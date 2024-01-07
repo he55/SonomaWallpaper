@@ -14,5 +14,5 @@
     <sys:String x:Key="LMenuExit">Exit</sys:String>
     <sys:String x:Key="LHideTip">SonomaWallpaper has been minimized to the system tray</sys:String>
     <sys:String x:Key="LRestartConfirmTip">Switching languages requires reopening the app</sys:String>
-    <sys:String x:Key="LNotSupportPlayTip">4K video playback only supports Windows 11 or higher systems</sys:String>
+    <sys:String x:Key="LNotSupportPlayTip">4K 120 frame video playback requires Windows 11 or higher</sys:String>
 </ResourceDictionary>
