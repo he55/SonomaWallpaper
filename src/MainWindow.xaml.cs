@@ -268,7 +268,7 @@ namespace SonomaWallpaper
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = Process.GetCurrentProcess().MainModule.FileName,
-                    Arguments = ""
+                    Arguments = "-r"
                 });
 
                 Environment.Exit(0);
