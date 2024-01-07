@@ -3,13 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="LLanguage">English</sys:String>
-    <sys:String x:Key="LAutoPlay">显示为屏幕保护程序</sys:String>
+    <sys:String x:Key="LAutoPlay">显示为屏幕保护程序（2 分钟后）</sys:String>
     <sys:String x:Key="LStartOnBoot">开机启动</sys:String>
     <sys:String x:Key="LDownload">下载</sys:String>
     <sys:String x:Key="LCancelDownload">取消下载</sys:String>
     <sys:String x:Key="LOpenFolder">打开文件夹</sys:String>
     <sys:String x:Key="LPreview">预览</sys:String>
-    <sys:String x:Key="LCancelDownloadConfirmTip">正在下载文件，是否确认退出</sys:String>
+    <sys:String x:Key="LCancelDownloadConfirmTip">文件正在下载中是否继续退出？</sys:String>
     <sys:String x:Key="LMenuShow">显示</sys:String>
     <sys:String x:Key="LMenuExit">退出</sys:String>
     <sys:String x:Key="LHideTip">SonomaWallpaper 已被最小化到系统托盘</sys:String>

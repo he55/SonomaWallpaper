@@ -3,13 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="LLanguage">中文</sys:String>
-    <sys:String x:Key="LAutoPlay">Show as screen saver</sys:String>
-    <sys:String x:Key="LStartOnBoot">Start On Boot</sys:String>
+    <sys:String x:Key="LAutoPlay">Show as screen saver (after 2 minutes)</sys:String>
+    <sys:String x:Key="LStartOnBoot">Start automatically at boot</sys:String>
     <sys:String x:Key="LDownload">Download</sys:String>
     <sys:String x:Key="LCancelDownload">Cancel Download</sys:String>
     <sys:String x:Key="LOpenFolder">Open Folder</sys:String>
     <sys:String x:Key="LPreview">Preview</sys:String>
-    <sys:String x:Key="LCancelDownloadConfirmTip">Downloading files, do you confirm to exit?</sys:String>
+    <sys:String x:Key="LCancelDownloadConfirmTip">Do you want to continue exiting while the file is being downloaded?</sys:String>
     <sys:String x:Key="LMenuShow">Show</sys:String>
     <sys:String x:Key="LMenuExit">Exit</sys:String>
     <sys:String x:Key="LHideTip">SonomaWallpaper has been minimized to the system tray</sys:String>
