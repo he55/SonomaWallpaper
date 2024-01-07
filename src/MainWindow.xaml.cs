@@ -28,6 +28,7 @@ namespace SonomaWallpaper
         {
             InitializeComponent();
 
+            this.Title = Constants.MainWindowTitle;
             toggleSwitch2.IsOn = Helper.CheckStartOnBoot();
 
             if (Helper.IsWindows11OrGreater())
