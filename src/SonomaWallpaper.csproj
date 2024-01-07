@@ -19,4 +19,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="copyfile.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
