@@ -60,7 +60,8 @@ namespace SonomaWallpaper
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            bool val = NativeMethods.GetLastInputTickCount() > 10 * 1000;
+            const int seconds = 2 * 60;
+            bool val = NativeMethods.GetLastInputTickCount() > seconds * 1000;
             if (!(_uwpVideoWindow?.IsPlaying == true) && _lastSelectedAsset.downloadState == DownloadState.downloaded && val)
             {
                 PreviewVideo();
