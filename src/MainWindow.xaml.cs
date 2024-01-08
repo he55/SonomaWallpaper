@@ -155,7 +155,7 @@ namespace SonomaWallpaper
 
         void LoadData()
         {
-            string langJson = File.ReadAllText($@"data\{_settings.Language}.json");
+            string langJson = File.ReadAllText(Helper.GetPathForStartupFolder($@"data\{_settings.Language}.json"));
             var langDict = TinyJson.JSONParser.FromJson<Dictionary<string, string>>(langJson);
 
             string GetString(string key)
@@ -165,7 +165,7 @@ namespace SonomaWallpaper
                 return "";
             }
 
-            string entriesJson = File.ReadAllText(@"data\entries.json");
+            string entriesJson = File.ReadAllText(Helper.GetPathForStartupFolder(@"data\entries.json"));
             var model = TinyJson.JSONParser.FromJson<EntriesObject>(entriesJson);
 
             List<WallpaperAsset> assets = new List<WallpaperAsset>();
