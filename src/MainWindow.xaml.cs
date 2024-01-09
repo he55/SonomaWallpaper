@@ -314,6 +314,8 @@ namespace SonomaWallpaper
                 return;
             }
             PreviewVideo();
+
+            NativeMethods.SetCursorPos((int)SystemParameters.PrimaryScreenWidth / 2, (int)SystemParameters.PrimaryScreenHeight);
         }
     }
 }

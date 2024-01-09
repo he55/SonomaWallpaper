@@ -16,6 +16,10 @@ namespace SonomaWallpaper
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
+        [DllImport("User32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetCursorPos(int X, int Y);
+
         [StructLayout(LayoutKind.Sequential)]
         public struct LASTINPUTINFO
         {
