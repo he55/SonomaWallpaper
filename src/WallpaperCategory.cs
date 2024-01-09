@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -91,15 +90,15 @@ namespace SonomaWallpaper
             {
                 await _webClient.DownloadFileTaskAsync(downloadURL, _tempfile);
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                if (ex.InnerException is SocketException)
-                {
-                    downloadState = DownloadState.none;
-                    progress = 0;
+                if (ex.Status == WebExceptionStatus.RequestCanceled)
+                    return;
 
-                    MessageBox.Show(I18nWpf.GetString("LNetworkErrorTip"), Constants.ProjectName);
-                }
+                downloadState = DownloadState.none;
+                progress = 0;
+
+                MessageBox.Show(I18nWpf.GetString("LNetworkErrorTip"), Constants.ProjectName);
             }
         }
 
