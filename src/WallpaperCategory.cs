@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SonomaWallpaper
@@ -73,7 +76,7 @@ namespace SonomaWallpaper
             _tempfile = Path.GetTempFileName();
             _webClient.DownloadFileCompleted += (object sender, AsyncCompletedEventArgs e) =>
             {
-                if (e.Cancelled)
+                if (e.Cancelled || e.Error != null)
                     return;
 
                 filePath = FolderHelper.GetFilePathForURL(downloadURL, FolderHelper.DownloadPath);
@@ -88,13 +91,22 @@ namespace SonomaWallpaper
             {
                 await _webClient.DownloadFileTaskAsync(downloadURL, _tempfile);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                if (ex.InnerException is SocketException)
+                {
+                    downloadState = DownloadState.none;
+                    progress = 0;
+
+                    MessageBox.Show(I18nWpf.GetString("LNetworkErrorTip"), Constants.ProjectName);
+                }
+            }
         }
 
         public async void CancelDownload()
         {
             _webClient.CancelAsync();
-            _webClient = null;
+
             downloadState = DownloadState.none;
             progress = 0;
 
