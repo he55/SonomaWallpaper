@@ -12,10 +12,11 @@
   </a>
   <br />
   <br />
+
+  <img src="screenshot.png" width="660">
+  <br />
   
 </div>
-
-![](screenshot.png)
 
 ## 下载
 https://github.com/he55/SonomaWallpaper/releases/latest
