@@ -68,13 +68,13 @@ namespace SonomaWallpaper
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
             FolderHelper.CreateFolder();
             LoadData();
-            DownloadImages(_assets);
+            await DownloadImages(_assets);
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -217,7 +217,7 @@ namespace SonomaWallpaper
             _lastSelectedAsset = selectedAsset;
         }
 
-        static async void DownloadImages(List<WallpaperAsset> assets)
+        static async Task DownloadImages(List<WallpaperAsset> assets)
         {
             WebClient webClient = new WebClient();
 
@@ -226,7 +226,19 @@ namespace SonomaWallpaper
                 string imagePath = FolderHelper.GetFilePathForURL(asset.previewImage, FolderHelper.ImageCachePath);
                 if (!File.Exists(imagePath))
                 {
-                    await webClient.DownloadFileTaskAsync(asset.previewImage, imagePath);
+                    try
+                    {
+                        await webClient.DownloadFileTaskAsync(asset.previewImage, imagePath);
+                    }
+                    catch
+                    {
+                        MessageBox.Show(I18nWpf.GetString("LNetworkErrorTip"), Constants.ProjectName);
+
+                        if (File.Exists(imagePath))
+                            File.Delete(imagePath);
+
+                        return;
+                    }
                 }
                 asset.previewImage = imagePath;
             }
