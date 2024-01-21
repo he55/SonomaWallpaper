@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace MacWallpaper
+namespace SonomaWallpaper
 {
     public class EmojiObject
     {

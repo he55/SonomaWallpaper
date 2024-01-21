@@ -12,7 +12,6 @@
                 <ui:XamlControlsResources />
                 <!-- Other merged dictionaries here -->
                 <ResourceDictionary Source="/GridView.xaml" />
-                <ResourceDictionary Source="/i18n/en.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
         </ResourceDictionary>
