@@ -50,8 +50,11 @@
             <ListBox
                 x:Name="listBox2"
                 DisplayMemberPath="name"
-                ItemsSource="{Binding items}" Margin="0,0,0,5" />
-            <Button Click="Button_Click" Content="Open Folder" />
+                ItemsSource="{Binding items}"
+                Margin="0,0,0,5" />
+            <Button
+                Click="Button_Click"
+                Content="Open Folder" />
         </StackPanel>
         <Border
             Width="1"
