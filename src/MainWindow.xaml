@@ -7,137 +7,59 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     Title="SonomaWallpaper"
-    Width="660"
-    Height="490"
-    MinWidth="660"
-    MinHeight="490"
+    Width="915"
+    Height="560"
+    MinWidth="915"
+    MinHeight="560"
     ui:TitleBar.IsIconVisible="True"
     ui:WindowHelper.UseModernWindowStyle="True"
-    Closing="Window_Closing"
     Loaded="Window_Loaded"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
-        <local:DownloadStateToVisibilityConverter
-            x:Key="noneConverter"
-            State="none" />
-        <local:DownloadStateToVisibilityConverter
-            x:Key="downloadingConverter"
-            State="downloading" />
-        <local:DownloadStateToVisibilityConverter
-            x:Key="downloadedConverter"
-            State="downloaded" />
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="Padding" Value="5,0" />
-            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="0,5" />
         </Style>
     </Window.Resources>
     <DockPanel>
-        <Grid Width="140">
-            <ListBox
-                x:Name="listBox"
-                DisplayMemberPath="title"
-                SelectionChanged="listBox_SelectionChanged" />
-            <Button
-                Margin="10,0,0,10"
-                VerticalAlignment="Bottom"
-                Click="ToggleLanguage"
-                Content="{DynamicResource LLanguage}" />
-        </Grid>
-        <Grid
-            x:Name="headerGrid"
-            Margin="10,0,20,0"
-            DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Border
-                Width="139"
-                Height="84.4"
-                VerticalAlignment="Top"
-                CornerRadius="6">
-                <Border.Background>
-                    <ImageBrush ImageSource="{Binding previewImage}" />
-                </Border.Background>
+        <ListBox
+            x:Name="listBox"
+            Width="150"
+            DisplayMemberPath="title"
+            SelectedIndex="0"
+            SelectionChanged="listBox_SelectionChanged" />
+        <StackPanel
+            x:Name="header"
+            Width="150"
+            Margin="10,0,10,0"
+            DockPanel.Dock="Right">
+            <Image
+                Width="128"
+                Height="128"
+                Source="{Binding SelectedItem.subitems[0].source, ElementName=listBox2}" />
+            <Border Style="{StaticResource BorderStyle}">
+                <TextBlock
+                    Text="{Binding name}"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
             </Border>
-            <StackPanel
-                Grid.Column="1"
-                Margin="10,0,0,0">
-                <Border
-                    Padding="5"
-                    Style="{StaticResource BorderStyle}">
-                    <TextBlock Text="{Binding name}" />
-                </Border>
-                <Border Style="{StaticResource BorderStyle}">
-                    <Grid>
-                        <TextBlock
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Text="{DynamicResource LAutoPlay}" />
-                        <ui:ToggleSwitch
-                            x:Name="toggleSwitch1"
-                            Width="50"
-                            HorizontalAlignment="Right"
-                            OffContent=""
-                            OnContent=""
-                            Toggled="ToggleAutoPlay" />
-                    </Grid>
-                </Border>
-                <Border Style="{StaticResource BorderStyle}">
-                    <Grid>
-                        <TextBlock
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Text="{DynamicResource LStartOnBoot}" />
-                        <ui:ToggleSwitch
-                            x:Name="toggleSwitch2"
-                            Width="50"
-                            HorizontalAlignment="Right"
-                            OffContent=""
-                            OnContent=""
-                            Toggled="ToggleStartOnBoot" />
-                    </Grid>
-                </Border>
-                <DockPanel>
-                    <Button
-                        Click="Download"
-                        Content="{DynamicResource LDownload}"
-                        Visibility="{Binding downloadState, Converter={StaticResource noneConverter}}" />
-                    <Button
-                        Click="CancelDownload"
-                        Content="{DynamicResource LCancelDownload}"
-                        Visibility="{Binding downloadState, Converter={StaticResource downloadingConverter}}" />
-
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Visibility="{Binding downloadState, Converter={StaticResource downloadedConverter}}">
-                        <Button
-                            Click="OpenFolder"
-                            Content="{DynamicResource LOpenFolder}" />
-                        <Button
-                            Margin="10,0,0,0"
-                            Click="Preview"
-                            Content="{DynamicResource LPreview}" />
-                    </StackPanel>
-
-                    <ui:ProgressBar
-                        Margin="20,0"
-                        Visibility="{Binding downloadState, Converter={StaticResource downloadingConverter}}"
-                        Value="{Binding progress}" />
-                </DockPanel>
-            </StackPanel>
-        </Grid>
+            <ListBox
+                x:Name="listBox2"
+                DisplayMemberPath="name"
+                ItemsSource="{Binding items}" Margin="0,0,0,5" />
+            <Button Click="Button_Click" Content="Open Folder" />
+        </StackPanel>
         <Border
-            Height="1"
-            Margin="0,10,0,10"
+            Width="1"
             Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
-            DockPanel.Dock="Top" />
+            DockPanel.Dock="Right" />
         <ui:GridView
             x:Name="gridView"
+            SelectedIndex="0"
             SelectionChanged="gridView_SelectionChanged">
             <ui:GridView.ItemTemplate>
                 <DataTemplate>
@@ -147,34 +69,23 @@
                             Padding="1"
                             BorderThickness="2"
                             CornerRadius="5">
-                            <Border
-                                Width="107"
-                                Height="65"
-                                CornerRadius="4">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding previewImage, IsAsync=True}" />
-                                </Border.Background>
-                            </Border>
+                            <Image
+                                Width="96"
+                                Height="96"
+                                Source="{Binding previewImage, IsAsync=True}" />
                         </Border>
                         <TextBlock
                             Width="100"
                             Margin="0,2,0,0"
                             FontSize="10"
                             FontWeight="Bold"
+                            Text="{Binding name}"
                             TextAlignment="Center"
-                            TextWrapping="Wrap">
-                            <Run Text="{Binding name}" />
-                            <Run
-                                x:Name="run"
-                                Text="↓" />
-                        </TextBlock>
+                            TextWrapping="Wrap" />
                     </StackPanel>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding isSelected}" Value="True">
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource SystemControlHighlightAccentBrush}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding downloadState}" Value="downloaded">
-                            <Setter TargetName="run" Property="Text" Value="" />
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
