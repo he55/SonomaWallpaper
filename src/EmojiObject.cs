@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace SonomaWallpaper
+namespace EmojiViewer
 {
     public class EmojiObject
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SonomaWallpaper
+namespace EmojiViewer
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

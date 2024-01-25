@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SonomaWallpaper
+namespace EmojiViewer
 {
     /// <summary>
     /// Interaction logic for App.xaml
