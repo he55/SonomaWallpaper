@@ -4,7 +4,7 @@
   <img src="icon.png" width="256">
   <h1>EmojiViewer</h1>
   <p>
-    Sonoma Wallpaper 是首款将 macOS Sonoma 4k 120 帧动态屏保壁纸带到 Windows 11 的软件，壁纸包含了自然景观、城市景观、水下景观和地球四个主题的屏保共 134 个视频壁纸。
+    Emoji 表情查看器。拥有来自 fluentui-emoji 的 1545 个表情符号。
   </p>
   
   <a href="https://github.com/he55/EmojiViewer/releases/latest">
