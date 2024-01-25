@@ -13,7 +13,7 @@
   <br />
   <br />
 
-  <img src="screenshot.png" width="660">
+  <img src="screenshot.png" width="915">
   <br />
   
 </div>
