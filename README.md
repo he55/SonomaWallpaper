@@ -20,14 +20,3 @@
 
 ## 下载
 https://github.com/he55/SonomaWallpaper/releases/latest
-
-## 功能
-- 4k 120 帧率视频播放
-- 多语言
-- 高 dpi 支持
-- 深色模式
-- 多任务下载
-- Windows 11 支持
-
-## 要做
-- [ ] Windows 12 支持
