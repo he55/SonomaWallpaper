@@ -212,8 +212,7 @@ namespace SonomaWallpaper
             if (selectedAsset == null)
                 selectedAsset = _assets[0];
 
-            selectedAsset.isSelected = true;
-            headerGrid.DataContext = selectedAsset;
+            gridView.SelectedItem = selectedAsset;
             _lastSelectedAsset = selectedAsset;
         }
 
@@ -256,15 +255,10 @@ namespace SonomaWallpaper
             WallpaperAsset selectedItem = (WallpaperAsset)gridView.SelectedItem;
             if (selectedItem != null)
             {
-                if (_lastSelectedAsset != null)
-                    _lastSelectedAsset.isSelected = false;
-
-                selectedItem.isSelected = true;
                 headerGrid.DataContext = selectedItem;
-                _lastSelectedAsset = selectedItem;
-
                 _settings.SelectedIndex = listBox.SelectedIndex;
                 _settings.SelectedId = selectedItem.id;
+                _lastSelectedAsset = selectedItem;
             }
         }
 

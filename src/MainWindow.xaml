@@ -34,6 +34,50 @@
             <Setter Property="Padding" Value="5,0" />
             <Setter Property="Margin" Value="0,0,0,5" />
         </Style>
+        <Style x:Key="GridViewItemStyle" TargetType="ui:GridViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ui:GridViewItem">
+                        <StackPanel Margin="5">
+                            <Border
+                                x:Name="border"
+                                Padding="1"
+                                BorderThickness="2"
+                                CornerRadius="5">
+                                <Border
+                                    Width="107"
+                                    Height="65"
+                                    CornerRadius="4">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding previewImage, IsAsync=True}" />
+                                    </Border.Background>
+                                </Border>
+                            </Border>
+                            <TextBlock
+                                Width="100"
+                                Margin="0,2,0,0"
+                                FontSize="10"
+                                FontWeight="Bold"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap">
+                                <Run Text="{Binding name}" />
+                                <Run
+                                    x:Name="run"
+                                    Text="↓" />
+                            </TextBlock>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource SystemControlHighlightAccentBrush}" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding downloadState}" Value="downloaded">
+                                <Setter TargetName="run" Property="Text" Value="" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <Grid Width="140">
@@ -138,47 +182,7 @@
             DockPanel.Dock="Top" />
         <ui:GridView
             x:Name="gridView"
-            SelectionChanged="gridView_SelectionChanged">
-            <ui:GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <Border
-                            x:Name="border"
-                            Padding="1"
-                            BorderThickness="2"
-                            CornerRadius="5">
-                            <Border
-                                Width="107"
-                                Height="65"
-                                CornerRadius="4">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding previewImage, IsAsync=True}" />
-                                </Border.Background>
-                            </Border>
-                        </Border>
-                        <TextBlock
-                            Width="100"
-                            Margin="0,2,0,0"
-                            FontSize="10"
-                            FontWeight="Bold"
-                            TextAlignment="Center"
-                            TextWrapping="Wrap">
-                            <Run Text="{Binding name}" />
-                            <Run
-                                x:Name="run"
-                                Text="↓" />
-                        </TextBlock>
-                    </StackPanel>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding isSelected}" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource SystemControlHighlightAccentBrush}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding downloadState}" Value="downloaded">
-                            <Setter TargetName="run" Property="Text" Value="" />
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ui:GridView.ItemTemplate>
-        </ui:GridView>
+            ItemContainerStyle="{StaticResource GridViewItemStyle}"
+            SelectionChanged="gridView_SelectionChanged" />
     </DockPanel>
 </Window>

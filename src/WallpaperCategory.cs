@@ -30,7 +30,6 @@ namespace SonomaWallpaper
         WebClient _webClient;
         string _tempfile;
         private double _progress;
-        private bool _isSelected;
         internal DownloadState _downloadState;
 
         public string id { get; set; }
@@ -54,15 +53,6 @@ namespace SonomaWallpaper
             set
             {
                 _progress = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool isSelected
-        {
-            get => _isSelected;
-            set
-            {
-                _isSelected = value;
                 OnPropertyChanged();
             }
         }
