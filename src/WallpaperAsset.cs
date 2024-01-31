@@ -18,13 +18,6 @@ namespace SonomaWallpaper
         downloaded
     }
 
-    public class WallpaperCategory
-    {
-        public string title { get; set; }
-        public string description { get; set; }
-        public List<WallpaperAsset> assets { get; set; }
-    }
-
     public class WallpaperAsset : INotifyPropertyChanged
     {
         WebClient _webClient;
@@ -113,5 +106,12 @@ namespace SonomaWallpaper
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+    }
+
+    public class WallpaperCategory
+    {
+        public string title { get; set; }
+        public string description { get; set; }
+        public List<WallpaperAsset> assets { get; set; }
     }
 }
