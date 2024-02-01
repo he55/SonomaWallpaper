@@ -247,7 +247,12 @@ namespace SonomaWallpaper
         {
             gridView.ItemsSource = ((WallpaperCategory)listBox.SelectedItem).assets;
             if (gridView.Items.Count > 0)
+            {
                 gridView.ScrollIntoView(gridView.Items[0]);
+
+                if (gridView.SelectedItem != _lastSelectedAsset)
+                    gridView.SelectedItem = _lastSelectedAsset;
+            }
         }
 
         private void gridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
