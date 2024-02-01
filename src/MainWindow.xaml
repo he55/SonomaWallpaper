@@ -148,11 +148,13 @@
                 </Border>
                 <DockPanel>
                     <Button
-                        Click="Download"
+                        Click="Button_Click"
+                        Tag="download"
                         Content="{DynamicResource LDownload}"
                         Visibility="{Binding downloadState, Converter={StaticResource noneConverter}}" />
                     <Button
-                        Click="CancelDownload"
+                        Click="Button_Click"
+                        Tag="cancelDownload"
                         Content="{DynamicResource LCancelDownload}"
                         Visibility="{Binding downloadState, Converter={StaticResource downloadingConverter}}" />
 
@@ -160,11 +162,13 @@
                         Orientation="Horizontal"
                         Visibility="{Binding downloadState, Converter={StaticResource downloadedConverter}}">
                         <Button
-                            Click="OpenFolder"
+                            Click="Button_Click"
+                            Tag="openFolder"
                             Content="{DynamicResource LOpenFolder}" />
                         <Button
                             Margin="10,0,0,0"
-                            Click="Preview"
+                            Click="Button_Click"
+                            Tag="preview"
                             Content="{DynamicResource LPreview}" />
                     </StackPanel>
 

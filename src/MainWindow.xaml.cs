@@ -213,7 +213,6 @@ namespace SonomaWallpaper
                 selectedAsset = _assets[0];
 
             gridView.SelectedItem = selectedAsset;
-            _lastSelectedAsset = selectedAsset;
         }
 
         static async Task DownloadImages(List<WallpaperAsset> assets)
@@ -302,31 +301,32 @@ namespace SonomaWallpaper
                 Helper.RemoveStartOnBoot();
         }
 
-        private void Download(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _lastSelectedAsset.Download();
-        }
-
-        private void CancelDownload(object sender, RoutedEventArgs e)
-        {
-            _lastSelectedAsset.CancelDownload();
-        }
-
-        private void OpenFolder(object sender, RoutedEventArgs e)
-        {
-            _lastSelectedAsset.OpenFolder();
-        }
-
-        private void Preview(object sender, RoutedEventArgs e)
-        {
-            if (!Helper.IsWindows11OrGreater())
+            string tag = (string)((Button)sender).Tag;
+            if (tag == "download")
             {
-                MessageBox.Show(I18nWpf.GetString("LNotSupportPlayTip"), Constants.ProjectName);
-                return;
+                _lastSelectedAsset.Download();
             }
-            PreviewVideo();
+            else if (tag == "cancelDownload")
+            {
+                _lastSelectedAsset.CancelDownload();
+            }
+            else if (tag == "openFolder")
+            {
+                _lastSelectedAsset.OpenFolder();
+            }
+            else if (tag == "preview")
+            {
+                if (!Helper.IsWindows11OrGreater())
+                {
+                    MessageBox.Show(I18nWpf.GetString("LNotSupportPlayTip"), Constants.ProjectName);
+                    return;
+                }
 
-            NativeMethods.SetCursorPos(0, 10000);
+                PreviewVideo();
+                NativeMethods.SetCursorPos(0, 10000);
+            }
         }
     }
 }
