@@ -13,6 +13,7 @@ namespace SonomaWallpaper
         {
             DownloadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Constants.ProjectName);
             ImageCachePath = Helper.GetPathForStartupFolder("images");
+
             if (!Directory.Exists(ImageCachePath))
                 ImageCachePath = Helper.GetPathForUserAppDataFolder("images");
 
