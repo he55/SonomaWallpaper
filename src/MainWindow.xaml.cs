@@ -63,9 +63,7 @@ namespace SonomaWallpaper
             const int seconds = 2 * 60;
             bool val = NativeMethods.GetLastInputTickCount() > seconds * 1000;
             if (!(_uwpVideoWindow?.IsPlaying == true) && _lastSelectedAsset.downloadState == DownloadState.downloaded && val)
-            {
                 PreviewVideo();
-            }
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -144,9 +142,7 @@ namespace SonomaWallpaper
             if (MessageBox.Show(I18nWpf.GetString("LCancelDownloadConfirmTip"), Constants.ProjectName, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 foreach (WallpaperAsset asset in assets)
-                {
                     asset.CancelDownload();
-                }
 
                 _notifyIcon.Dispose();
                 Environment.Exit(0);
@@ -173,13 +169,15 @@ namespace SonomaWallpaper
 
             foreach (var item in model.categories)
             {
-                WallpaperCategory category = new WallpaperCategory();
-                category.title = GetString(item.localizedNameKey);
-                category.description = GetString(item.localizedDescriptionKey);
-                category.assets = new List<WallpaperAsset>();
+                WallpaperCategory category = new WallpaperCategory
+                {
+                    title = GetString(item.localizedNameKey),
+                    description = GetString(item.localizedDescriptionKey),
+                    assets = new List<WallpaperAsset>()
+                };
+
                 foreach (var item2 in model.assets.Where(x => x.categories.Contains(item.id)))
                 {
-                    string filePath = FolderHelper.GetFilePathForURL(item2.url4KSDR240FPS, FolderHelper.DownloadPath);
                     WallpaperAsset asset = new WallpaperAsset
                     {
                         id = item2.id,
@@ -187,6 +185,8 @@ namespace SonomaWallpaper
                         previewImage = item2.previewImage,
                         downloadURL = item2.url4KSDR240FPS,
                     };
+
+                    string filePath = FolderHelper.GetFilePathForURL(item2.url4KSDR240FPS, FolderHelper.DownloadPath);
                     if (File.Exists(filePath))
                     {
                         asset._downloadState = DownloadState.downloaded;
@@ -198,21 +198,19 @@ namespace SonomaWallpaper
                 categories.Add(category);
             }
 
-            _assets = assets;
             listBox.ItemsSource = categories;
             listBox.SelectedIndex = _settings.SelectedIndex;
 
             WallpaperAsset selectedAsset = null;
             string id = _settings.SelectedId;
             if (!string.IsNullOrEmpty(id))
-            {
-                selectedAsset = _assets.Where(x => x.id == id).FirstOrDefault();
-            }
+                selectedAsset = assets.Where(x => x.id == id).FirstOrDefault();
 
             if (selectedAsset == null)
-                selectedAsset = _assets[0];
+                selectedAsset = assets[0];
 
             gridView.SelectedItem = selectedAsset;
+            _assets = assets;
         }
 
         static async Task DownloadImages(List<WallpaperAsset> assets)
@@ -234,7 +232,6 @@ namespace SonomaWallpaper
 
                         if (File.Exists(imagePath))
                             File.Delete(imagePath);
-
                         return;
                     }
                 }
