@@ -21,6 +21,12 @@
 ## 下载
 https://github.com/he55/SonomaWallpaper/releases/latest
 
+## 离线壁纸
+将下载的壁纸放到 `文档` 文件夹下的 `SonomaWallpaper` 目录，然后彻底退出软件再重新打开
+
+- https://www.alipan.com/s/wHAC9m6fm9n
+- https://pan.baidu.com/s/1ZTJUj0IEf_RcFLO0PCx1Ng?pwd=e2on
+
 ## 功能
 - 4k 240 帧率视频播放
 - 多语言
