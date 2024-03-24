@@ -121,7 +121,13 @@ namespace SonomaWallpaper
             _notifyIcon.ContextMenuStrip = contextMenuStrip1;
             _notifyIcon.Text = Constants.ProjectName;
             _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
-            _notifyIcon.DoubleClick += delegate { ShowWindow(); };
+            _notifyIcon.MouseClick += (_, e) =>
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    ShowWindow();
+                }
+            };
             _notifyIcon.Visible = true;
         }
 
